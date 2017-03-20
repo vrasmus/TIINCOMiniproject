@@ -1,0 +1,15 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}
+\centering
+\filldraw (0,0) circle (3pt);
+\filldraw (0,3) circle (3pt);
+\filldraw (4.5,0) circle (3pt);
+\filldraw (4.5,3) circle (3pt);
+\draw[->,line width=0.6pt] (0,3) node[left=3pt] {$1$} -- node[above=1pt] {$p$} (4.425,0.075);
+\draw[->,line width=0.6pt] (0,0) node[left=3pt] {$0$} -- node[below=3pt] {$p$} (4.425,2.925);
+\draw[->,line width=0.6pt] (0,0) -- node[below] {$1-p$} (4.425,0.00)  node[right=3pt] {$1$};
+\draw[->,line width=0.6pt] (0,3) -- node[above] {$1-p$} (4.425,3) node[right=3pt] {$0$};
+\end{tikzpicture}
+\caption{Binary Symmetric Channel}
+\end{figure}

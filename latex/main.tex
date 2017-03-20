@@ -1,0 +1,29 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{geometry}
+ \geometry{
+ left=25mm,
+ top=25mm,
+ right=25mm,
+ bottom=25mm,
+ }
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{todonotes}
+%\renewcommand{\baselinestretch}{1.25}
+
+\title{Decoding Performance of Convolutional Codes}
+\author{Rasmus Vestergaard, Stefan Bejan and Daniel Pytlos}
+\date{March 2017}
+
+\begin{document}
+\maketitle
+\todo[inline] {Compare different codes with the same constraint length but different (same number of) generator polynomials in both burst-error and random-error correction.}
+\todo[inline] {Compare different codes with the same constraint length and different code rate (more generator polynomials).}
+\todo[inline] {Create a markov burst-error channel?}
+\input{BSCFigure}
+\end{document}
