@@ -9,7 +9,7 @@ trellis2 = poly2trellis(4,{'1 + x^2 + x^3', '1 + x + x^3', '1+x+x^2+x^3'});
 trellis3 = poly2trellis(3,{'1 + x^2', '1+x+x^2','1+x+x^2','1+x+x^2'});
 
 trellisList = [trellis1,trellis2,trellis3];
-trellisCodeLabels = [string('$C_{1}(2,1,6)$'),string('$C_{2}(3,1,3)$'),string('$C_{3}(4,1,2)$')];
+trellisCodeLabels = [('$C_{1}(2,1,6)$'),('$C_{2}(3,1,3)$'),('$C_{3}(4,1,2)$')];
 
 %% Extra trellises with code rate 1/2:
 %trellis1_ = poly2trellis(7,{'1 + x + x^2 + x^3 + x^4 + x^5 + x^6', '1 + x^2 + x^3 + x^5 + x^6'});

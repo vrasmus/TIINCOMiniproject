@@ -1,12 +1,12 @@
 clear all;
 close all; 
 
-simulationRuns = 5;
+simulationRuns = 1;
 
 messageLength = 10^6;
-BurstLevels = 50;
-nBursts = 400;
-burstSep = 5000;
+BurstLevels = 50; %50 burst lenghts - 1 bit, 2 bits, 3 bits consecutive.
+nBursts = 400; %How many bursts of that lenghts we are in the message.
+burstSep = 5000; %separation between bursts.
 
 %% Simulation
 rng(0);
@@ -21,16 +21,16 @@ for k=1:simulationRuns
         code = convenc(msg,trellisList(j));
         codeLength = length(code);
 
-        for i=1:BurstLevels
+        for i=1:BurstLevels % start with no bursts and increase.
             burstLength=i-1;
             errors = zeros(codeLength,1);
             for n = 0:nBursts-1
-                errors(1+(n*burstSep):(n*burstSep) + burstLength) = 1;
+                errors(1+(n*burstSep):(n*burstSep) + burstLength) = 1; % Separate each burst by using the separator
             end 
             code_ = mod(code+errors,2);
             msg_ = vitdec(code_, trellisList(j), tblen,'trunc','hard');
 
-            BE(j,i) = BE(j,i) + sum(xor(msg,msg_))/nBursts;
+            BE(j,i) = BE(j,i) + sum(xor(msg,msg_))/nBursts; %calculate how many errors (bits) were received in error
         end
     end
 end
