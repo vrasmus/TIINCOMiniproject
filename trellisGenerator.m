@@ -47,5 +47,5 @@ trellis9 = poly2trellis(4,{'1 + x^2 + x^3', '1 + x + x^3', '1+x+x^2+x^3', '1+x+x
 
 %% Prints free distance:
 for i=1:3
-    distspec(trellisList(i));
+    distspec(trellisList(i))
 end

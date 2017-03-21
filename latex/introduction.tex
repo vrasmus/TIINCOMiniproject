@@ -1,1 +1,17 @@
- 
+The purpose of this report is to simulate the end-to-end transmission of a data message using convolutional codes. Figure \ref{fig:simulationOverview} shows the logical setup of the simulation.
+
+\input{overviewFigure}
+
+A message of an arbitrary length is sent over a noisy channel. The 2 types of channels considered in this simulation scenario are:
+\begin{itemize}
+   \item BSC - binary symmetric channel - where random errors at random positions occur. The typical representation of a binary symmetric channel is shown in figure \ref{fig:bscChannel}
+   \item Burst error channel - where errors appear one after another - forming a larger burst error
+\end{itemize}
+
+\input{BSCFigure}
+
+The purpose of the simulation is to determine the effects introduced by modifying the different parameters of the convolutional code, namely the constraint length and the code rate while keeping the free distance constant. In order to achieve the best performance a trade-off analysis on the parameters needs to be performed.
+
+The simulation is constructed using Matlab. Section \ref{sec:methodSection} presents the approach we used in order to systematically determine the result variations and the subsequent sections present the results. In section \ref{sec:conclusionSection} we summarize the findings and provide our interpretation.
+
+
