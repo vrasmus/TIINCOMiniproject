@@ -1,0 +1,13 @@
+\begin{figure}
+\centering
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=3cm]
+\centering
+\node[state] (A) at (0,0) {$0$};
+\node[state] (D) at (3,0) {$1$};
+\path(A) edge[loop left] node{$1-p_{01}$} (A);
+\path(A) edge[bend left] node{$p_{01}$} (D);
+\path(D) edge[bend left] node{$p_{10}$} (A);
+\path(D) edge[loop right] node{$1-p_{10}$} (D);
+\end{tikzpicture}
+\caption{Markov Chain for Burst Channel Simulation.}
+\end{figure}
