@@ -1,8 +1,8 @@
-As a starting point for the analysis, the following 3 polynomial sets of convolutional codes were given. The first subscript represents the code number (further referenced in the report) and the second is the index of the generator polynomial associated with the code.
+As a starting point for the analysis, the following 3 sets of generator polynomials convolutional codes were given. The first subscript of each polynomial represents the code number for later reference, and the second subscript is the index of the generator polynomial associated with the code.
 
 \begin{align*}
 \begin{matrix}
-Code 1&Code 2&Code 3\\
+\textbf{Code 1}&\textbf{Code 2}&\textbf{Code 3}\\
 g_{1,1}(x) = 1 + x + x^2 + x^3 + x^6&g_{2,1}(x) = 1 + x^2 + x^3&g_{3,1}(x)=1 + x^2\\
 g_{1,2}(x) = 1 + x^2 + x^3 + x^5 + x^6&g_{2,2}(x)=1 + x + x^3&g_{3,2} = 1+x+x^2\\
 &g_{2,3}(x) = 1+x+x^2+x^3&g_{2,3}(x)=1+x+x^2\\
@@ -10,63 +10,56 @@ g_{1,2}(x) = 1 + x^2 + x^3 + x^5 + x^6&g_{2,2}(x)=1 + x + x^3&g_{3,2} = 1+x+x^2\
 \end{matrix}
 \end{align*}
 
-We started our investigation by comparing how these given codes can handle random and burst errors on the channels. For this purpose, we designed 2 Matlab scripts that would allow us to simulate the transmission of a message over the given types of channels.
-
-In both scripts, it is possible to adjust the input message length and the number of times the simulation should run. Increasing the number of simulation iterations will generates smoother lines of the figures, this reducing the stochastic effects on the results. For our simulations, we iterated the simulation 25 times, with different input messages.
-
-A third file (\verb@trellisGenerator.m@), defining different convolutional code generator polynomials was required in order to easily change the code polynomials used to coding and decoding.
-
-The scripts are summarized as follows:
-
-\subsection{Random errors generation}
-
-The file \verb@randomErrors.m@ presents the method of simulation of random errors on a BSC. In the script, it is possible to modify the following simulation parameters:
-
-\begin{itemize}
-   \item \verb@maxCER@ - maximum channel error rate. A value of 0.1 would mean that the channel can, at maximum, change 10\% of the transmitted bits.
-   \item \verb@CERLevels@ - the number of different channel error levels for the simulation. This value determines the granularity of the increase steps for the error rate.  
+The investigation is concerned with how the convolutional codes performs when random and burst errors are introduced in the channels. For this purpose, MATLAB scripts that would allow simulating transmission of a message over the given types of channels are created.
+In each script, it is possible to adjust the input message length and the number of times the simulation should run. Increasing the number of simulation iterations will generate smoother lines of the figures, by averaging the results of multiple realizations. This reduces effects of the stochastic nature of the simulation. For the simulations presented in the paper, the result is from $25$ runs. 
+An additional file, (\verb@trellisGenerator.m@), defines the convolutional code generator polynomials used. The code polynomials used for coding and decoding may be easily specified by modifying this file.
+The following sections present the methods used for simulation.
+\subsection{Binary Symmetric Channel}
+The file \verb@randomErrors.m@ presents the method of simulation of random errors in a BSC. In the script, it is possible to modify the following simulation parameters:
+\begin{itemize}\setlength\itemsep{0pt}
+   \item \verb@maxCER@: Maximum Channel bit Error Rate (CER) that is simulated.
+   \item \verb@CERLevels@: The number of different CER levels for the simulation. This value determines the granularity of the steps as the CER is increased from $0$ to \verb@maxCER@.
 \end{itemize}
+For the specified number of iterations, the script generates a message of the given length. The message is then encoded using the code definitions from \verb@trellisGenerator.m@ file and for each of the codes, the encoded data is altered using the different levels of CER. For a given CER, the exact amount of bits corresponding to that CER is altered, independently positioned. The alteration of bits at random positions in the message simulates the channel noise. For each of the error levels, the received codeword is then decoded and compared to the transmitted version, calculating the Bit Error Rate (BER).
 
-For the specified number of iterations, the script generates a message of the given length. The message is then encoded using the code definitions from \verb@trellisGenerator.m@ file and for each of the codes, the encoded data is altered using the different levels of error probability. The alteration of bits at random positions in the message simulates the channel noise. For each of the error levels, the data is then decoded and compared to the transmitted version, calculating the Bit Error Rate (BER).
+\subsection{Deterministic Bursts}
 
-\subsection{Burst errors generation}
-
-The file \verb@burstErrors.m@ presents the method of simulation of burst errors on a transmission channel. In the script, it is possible to modify the following simulation parameters:
-
-\begin{itemize}
-   \item \verb@BurstLevels@ - the number of different error burst lengths that are introduced on the channel. 
-   \item \verb@nBursts@ - the total number of error bursts to be introduced on the channel.
-   \item \verb@burstSep@ - the number of unaffected bits between error bursts.
+The file \verb@burstErrors.m@ presents the method of simulation of deterministic burst errors. In the script, it is possible to modify the following simulation parameters:
+\begin{itemize}\setlength\itemsep{0pt}
+   \item \verb@BurstLevels@: The number of different error burst lengths that are introduced on the channel. Set to $n$, bursts of length $\{0, 1, \dots , n-1 \}$ are simulated.
+   \item \verb@nBursts@: The total number of error bursts to be introduced on the channel.
+   \item \verb@burstSep@: The number of unaffected bits between error bursts. Must be large enough that each burst does not influence adjacent bursts.
 \end{itemize}
+In a similar manner as in the BSC, for the specified number of iterations, the script generates a message of the given length. The message is then encoded using the code definitions from \verb@trellisGenerator.m@ file and for each of the codes, the encoded data is altered using by introducing errors in bursts of a specific length. The burst error represents a channel being temporarily affected by interference. For each burst length, the data is then decoded and compared to the transmitted version, calculating the number of message errors per burst of a specific length.
+\input{markovChannels}
 
-Just as it happens in the case of the BSC, for the specified number of iterations, the script generates a message of the given length. The message is then encoded using the code definitions from \verb@trellisGenerator.m@ file and for each of the codes, the encoded data is altered using the different levels of burst error. The burst error represents a channel being temporarily affected by interference. For each level of burst, the data is then decoded and compared to the transmitted version, calculating the Burst Error (BE).
-\\[8pt]
+\subsection{Additional Codes}
+The results for the given codes are presented in section \ref{sec:givenCodesSection}. While it is possible to compare the codes, it is not entirely fair to compare codes with both varying code rate and constraint length. It is more reasonable to compare the performance of codes with the same code rate or same constraint length, to show the effect of changing only one of the parameters.
 
-The results for the given codes are presented in section \ref{sec:givenCodesSection}. Even though the results, show as expected, a negative relation between the code rate and constraint length on one side and error rates on the other, we considered that simulations where we are varying only one of the factors are necessary. This approach allows us not only to confirm that both the factors influence the error correction capabilities of the code, but also to assess their sensibility.
 
-In order to achieve the above mentioned, we needed to come up with 6 new set of codes namely Code 4 to 9. Their generator polynomials are presented below.
+
+\todo{R: Changed this --- Even though the results, show as expected, a negative relation between the code rate and constraint length on one side and error rates on the other, we considered that simulations where we are varying only one of the factors are necessary. This approach allows us not only to confirm that both the factors influence the error correction capabilities of the code, but also to assess their sensibility.}
+
+In order to do so, additional codes must be introduced for comparison. These codes are presented as Code 4 to 9, and specified by the generator polynomials below:
 
 \begin{align*}
 \begin{matrix}
-Code 4&Code 5&Code 6\\
+\textbf{Code 4}&\textbf{Code 5}&\textbf{Code 6}\\
 g_{4,1}(x) = 1 + x^2 + x^3&g_{5,1}(x) = 1 + x^2&g_{6,1}(x)=1 + x + x^2 + x^3 + x^6\\
 g_{4,2}(x) = 1+x+x^2+x^3&g_{5,2}(x) = 1+x+x^2&g_{6,2}(x)=1 + x^2 + x^3 + x^5 + x^6\\
 &&g_{6,3}(x)=1 + x + x^2 + x^3 + x^4 + x^5 + x^6\\
 \end{matrix}\\
 \begin{matrix}
-Code 7&Code 8&Code 9\\
+\textbf{Code 7}&\textbf{Code 8}&\textbf{Code 9}\\
 g_{7,1}(x) = 1 + x^2&g_{8,1}(x) = 1 + x + x^2 + x^3 + x^6&g_{9,1}(x)=1 + x^2 + x^3\\
 g_{7,2}(x) = 1+x+x^2&g_{8,2}(x) = 1 + x + x^3 + x^4 + x^6&g_{9,2}(x)=1 + x + x^3\\
 g_{7,3}(x) = 1+x+x^2&g_{8,3}(x) = 1 + x^2 + x^3 + x^5 + x^6&g_{9,3}(x)=1+x+x^2+x^3\\
 &g_{8,4}(x) = 1 + x + x^2 + x^3 + x^4 + x^5 + x^6&g_{9,4}(x)=1+x+x^2+x^3\\
 \end{matrix}
 \end{align*}
-
-Using the above mentioned codes, we were able to group them by code rate and by constraint length, as follows:
-
+These codes can be grouped with the given codes by code rate and by constraint length, as follows:
 \begin{table}[h]
 \centering
-\caption{Grouping of codes based on code rate}
 \begin{tabular}{ll}
 \hline
 Code rate &  Codes \\ \hline
@@ -74,11 +67,11 @@ Code rate &  Codes \\ \hline
 1/3 & Code 2, Code 6, Code 7 \\
 1/4 & Code 3, Code 8, Code 9 \\
 \end{tabular}
+\caption{Grouping of codes based on code rate}
 \end{table}
 
 \begin{table}[h]
 \centering
-\caption{Grouping of codes based on constraint length}
 \begin{tabular}{ll}
 \hline
 Constraint length &  Codes \\ \hline
@@ -86,8 +79,7 @@ Constraint length &  Codes \\ \hline
 4 & Code 2, Code 4, Code 9 \\
 7 & Code 1, Code 6, Code 8 \\
 \end{tabular}
+\caption{Grouping of codes based on constraint length}
 \end{table}
 
-The results obtained when having the constant code rate of 1/2 and variable constraint length are presented in section \ref{sec:constantCodeRateSection}. Similarly, the results obtained by having a constant constraint length of 4 and variable code lengths are presented in section \ref{sec:constantContraintLengthSection}.
-
- 
+All of these groups can be chosen for simulation in \verb@trellisGenerator.m@. The results obtained for the constant code rate of 1/2 and variable constraint length are presented in section \ref{sec:constantCodeRateSection}. Similarly, the results obtained by having a constant constraint length of 4 and variable code lengths are presented in section \ref{sec:constantContraintLengthSection}.

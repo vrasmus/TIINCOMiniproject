@@ -6,11 +6,11 @@ messageLength = 10^6;
 burstProbabilityMax = 0.005;
 burstProbabilityLevels = 20;
 
-p21 = 0.05;
+p10 = 0.05;
 eps1 = 0.0;
 eps2 = 0.0;
 
-simulationRuns = 25; %How many different messages are sent in the simulation.
+simulationRuns = 2; %How many different messages are sent in the simulation.
 %% Simulation
 rng(0); % seed.
 trellisGenerator
@@ -30,7 +30,7 @@ for k=1:simulationRuns
         for i=1:burstProbabilityLevels+1 %go through all the error rates. Simulating the generated message with different error rates.
             
             %Simulates the channel
-            errors = markovErrorGenerator(codeLength,p12(i),p21,eps1,eps2);
+            errors = markovErrorGenerator(codeLength,p12(i),p10,eps1,eps2);
             CER(j,i) = CER(j,i) + sum(errors)/codeLength;
             
             code_ = mod(code+errors,2); %Received code

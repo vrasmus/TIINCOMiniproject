@@ -1,17 +1,16 @@
-The purpose of this report is to simulate the end-to-end transmission of a data message using convolutional codes. Figure \ref{fig:simulationOverview} shows the logical setup of the simulation.
+This paper investigates the decoding performance of convolutional codes. This is done by simulating end-to-end transmission in different channels where messages are encoded using various convolutional codes.
+Figure \ref{fig:simulationOverview} shows the logical setup of the simulation.
 
 \input{overviewFigure}
 
-A message of an arbitrary length is sent over a noisy channel. The 2 types of channels considered in this simulation scenario are:
-\begin{itemize}
-   \item BSC - binary symmetric channel - where random errors at random positions occur. The typical representation of a binary symmetric channel is shown in figure \ref{fig:bscChannel}
-   \item Burst error channel - where errors appear one after another - forming a larger burst error
+A message, $\textbf{x}$, consisting of $10^6$ bits is sent over a noisy channel. 2 types of channels are considered in this study:
+\begin{itemize}\setlength\itemsep{0pt}
+   \item Binary Symmetric Channel (BSC): Random, independant errors occur during transmission. The typical representation of a binary symmetric channel is shown in figure \ref{fig:bscChannel}
+   \item Burst Error Channel: Errors are not independant, but occur in bursts.
 \end{itemize}
 
 \input{BSCFigure}
 
-The purpose of the simulation is to determine the effects introduced by modifying the different parameters of the convolutional code, namely the constraint length and the code rate while keeping the free distance constant. In order to achieve the best performance a trade-off analysis on the parameters needs to be performed.
-
-The simulation is constructed using Matlab. Section \ref{sec:methodSection} presents the approach we used in order to systematically determine the result variations and the subsequent sections present the results. In section \ref{sec:conclusionSection} we summarize the findings and provide our interpretation.
-
+The purpose of the study is to quantify the effects of different parameters of the convolutional code, namely the constraint length and the code rate. In order to achieve the best performance a trade-off analysis on the parameters needs to be performed. 
+All simulations are conducted by utilizing MATLAB. Section \ref{sec:methodSection} presents the approach used to systematically determine the effect of code parameters in different channels. \todo{Analysis performed in sections 2-3-4}. Finally, section \ref{sec:conclusionSection} summarizes the findings.
 

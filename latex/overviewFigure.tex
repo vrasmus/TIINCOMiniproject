@@ -19,8 +19,8 @@
     
     \draw [->] (encoder) -- node[name=u] {} (channel);
     \draw [->] (channel) -- node[name=v] {} (decoder);
-    \draw [draw,->] (input) -- node {$msg$} (encoder);
-    \draw [->] (decoder) -- node [name=y] {$msg$}(output);
+    \draw [draw,->] (input) -- node {$\textbf{x}$} (encoder);
+    \draw [->] (decoder) -- node [name=y] {$\hat{\textbf{x}}$}(output);
 
 \end{tikzpicture}
 \caption{Simulation overview \label{fig:simulationOverview}}
