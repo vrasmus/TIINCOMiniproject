@@ -38,7 +38,7 @@ trellis9 = poly2trellis(4,{'1 + x^2 + x^3', '1 + x + x^3', '1+x+x^2+x^3', '1+x+x
 
 %% Constant constraint lenght (4), different code rates
 % trellisList = [trellis2,trellis4,trellis9];
-% trellisCodeLabels = [string('$C_{2}(2,1,4)$'),string('$C_{4}(3,1,4)$'),string('$C_{9}(4,1,4)$')];
+% trellisCodeLabels = [string('$C_{2}(3,1,4)$'),string('$C_{4}(2,1,4)$'),string('$C_{9}(4,1,4)$')];
 
 %% Constant constraint lenght (7), different code rates
 % trellisList = [trellis1,trellis6,trellis8];
