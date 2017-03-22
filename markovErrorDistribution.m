@@ -1,9 +1,9 @@
 close all;
 clear all;
 
-p = 0.05;
-
-k = 1:75;
+p = 0.15;
+K = 50
+k = 1:K;
 Pr = (1-p).^(k-1)*p;
 
 Fig1 = figure('position', [0 0 400 250]);
@@ -13,7 +13,7 @@ stem(k,Pr);
 title('Distribution of bursts in Markov channel')
 ylabel('Probability')
 xlabel('Burst Length')
-xlim([0,75])
+xlim([0,K])
 grid on;
 
 set(findall(Fig1, 'Type', 'Text'),'FontWeight', 'Normal','Interpreter','latex')
