@@ -1,16 +1,14 @@
+\section{Introduction}
 This paper investigates the decoding performance of convolutional codes. This is done by simulating end-to-end transmission in different channels where messages are encoded using various convolutional codes.
-Figure \ref{fig:simulationOverview} shows the logical setup of the simulation.
+Figure \ref{fig:simulationOverview} shows the logical setup of the simulation, with the encoder a convolutional encoder and the decoder a hard decision Viterbi decoder.
 
 \input{overviewFigure}
-
 A message, $\textbf{x}$, consisting of $10^6$ bits, is sent over a noisy channel. 2 types of channels are considered in this study:
 \begin{itemize}\setlength\itemsep{0pt}
    \item Binary Symmetric Channel (BSC): Random, independant errors occur during transmission. The typical representation of a binary symmetric channel is shown in figure \ref{fig:bscChannel}
-   \item Burst Error Channel: Errors are not independant, but occur in bursts.
+   \item Markov Burst Error Channel (MBEC): Errors are not independant, but occur in bursts.
 \end{itemize}
+The purpose of the study is to quantify the effects of different parameters of the convolutional code, namely the constraint length and the code rate. In order to achieve the best performance a trade-off analysis on the parameters needs to be performed. 
+All simulations are conducted by utilizing MATLAB. Section \ref{sec:methodSection} presents the approach used to systematically determine the effect of code parameters in different channels. Simulations with various varying parameters are conducted and discussed in sections \ref{sec:givenCodesSection}-\ref{sec:constantContraintLengthSection}. Finally, section \ref{sec:conclusionSection} summarizes the findings.
 
 \input{BSCFigure}
-
-The purpose of the study is to quantify the effects of different parameters of the convolutional code, namely the constraint length and the code rate. In order to achieve the best performance a trade-off analysis on the parameters needs to be performed. 
-All simulations are conducted by utilizing MATLAB. Section \ref{sec:methodSection} presents the approach used to systematically determine the effect of code parameters in different channels. \todo{Analysis performed in sections 2-3-4}. Finally, section \ref{sec:conclusionSection} summarizes the findings.
-

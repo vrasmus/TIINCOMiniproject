@@ -1,15 +1,15 @@
 \subsection{Markov Burst Error Channels}
-While the previous channels are easy to deal with in theory, in many cases it does not match the reality well. In practice, errors are neither entirely independant and random, nor deterministic bursts, but rather stochastic with correlation. Effects such as deep fades in wireless channels cause the probability of a symbol being in error to be much larger if the previous symbol was an error. This causes errors to appear in bursts. A simple model of such a channel can be created by using a two-state Markov chain, as shown on figure \ref{fig:markovChain}. For each time-step (each bit in the channel), the current state of the chain is updated and a bit is output. The transition probabilities $p_{01}$ and $p_{10}$ determines how the error pattern will behave. $p_{01}$ is the probability of starting a burst, and $p_{10}$ is the probability of ending the current burst. In this way, the length of bursts, BL, will be geometrically distributed:\todo{Can add a plot of this for chosen p10 if room for it.}
+While the previous channels are easy to deal with in theory, in many cases it does not match the reality well. In practice, errors are neither entirely independant and random, nor deterministic bursts, but rather stochastic with correlation. Effects such as deep fades in wireless channels cause the probability of a symbol being in error to be much larger if the previous symbol was an error. This causes errors to appear in bursts. A simple model of such a channel can be created by using a two-state Markov chain, as shown on figure \ref{fig:markovChain}. For each time-step (each bit in the channel), the current state of the chain is updated and a bit is output. The transition probabilities $p_{01}$ and $p_{10}$ determines how the error pattern will behave. $p_{01}$ is the probability of starting a burst, and $p_{10}$ is the probability of ending the current burst. In this way, the length of bursts, BL, will be geometrically distributed:
 \begin{equation}
 P(\text{BL} = k) = (1-p_{10})^{k-1}  p_{10}
 \end{equation}
-meaning that smaller bursts are more likely than long bursts. The Markov burst error channel will be simulated by basing the error pattern on this Markov chain.
+meaning that smaller bursts are more likely than long bursts. The MBEC will be simulated by basing the error pattern on this Markov chain.
 \input{markovFigure}
 
 The file \verb@markovErrors.m@ contains the implementation of this method for simulation of these random burst errors. It is possible to modify the following simulation parameters:
 \begin{itemize}\setlength\itemsep{0pt}
 \item \verb@burstProbabilityMax@, max value for $p_{01}$ to be simulated.
 \item \verb@burstProbabilityLevels@, number of different levels of $p_{01}$ to be simulated. Determines the granularity of the simulation.
-\item \verb@p10@, the transition probability from state $1$ to $0$
+\item \verb@p10@, transition probability from state $1$ to $0$. This is set to $0.15$ in all simulations, causing the mean burst length to be $6.67$ bits and $95\%$ of bursts will be smaller than $19$ bits.
 \end{itemize}
 For each of the specified number of simulations, a message is generated and encoded using the code definitions from \verb@trellisGenerator.m@ and for each of these transmission through a number of Markov channels, where the transition parameter $p_{01}$ is varied according to the specified parameters, is simulated. The CER of each Markov channel is calculated. The received codeword is then decoded and compared to the real message. Finally, the BER is calculated.

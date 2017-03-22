@@ -9,7 +9,6 @@ g_{1,2}(x) = 1 + x^2 + x^3 + x^5 + x^6&g_{2,2}(x)=1 + x + x^3&g_{3,2} = 1+x+x^2\
 &&g_{3,4}(x) = 1+x+x^2
 \end{matrix}
 \end{align*}
-
 The investigation is concerned with how the convolutional codes performs when random and burst errors are introduced in the channels. For this purpose, MATLAB scripts that would allow simulating transmission of a message over the given types of channels are created.
 In each script, it is possible to adjust the input message length and the number of times the simulation should run. Increasing the number of simulation iterations will generate smoother lines of the figures, by averaging the results of multiple realizations. This reduces effects of the stochastic nature of the simulation. For the simulations presented in the paper, the result is from $25$ runs. 
 An additional file, (\verb@trellisGenerator.m@), defines the convolutional code generator polynomials used. The code polynomials used for coding and decoding may be easily specified by modifying this file.
@@ -35,11 +34,6 @@ In a similar manner as in the BSC, for the specified number of iterations, the s
 
 \subsection{Additional Codes}
 The results for the given codes are presented in section \ref{sec:givenCodesSection}. While it is possible to compare the codes, it is not entirely fair to compare codes with both varying code rate and constraint length. It is more reasonable to compare the performance of codes with the same code rate or same constraint length, to show the effect of changing only one of the parameters.
-
-
-
-\todo{R: Changed this --- Even though the results, show as expected, a negative relation between the code rate and constraint length on one side and error rates on the other, we considered that simulations where we are varying only one of the factors are necessary. This approach allows us not only to confirm that both the factors influence the error correction capabilities of the code, but also to assess their sensibility.}
-
 In order to do so, additional codes must be introduced for comparison. These codes are presented as Code 4 to 9, and specified by the generator polynomials below:
 
 \begin{align*}
@@ -67,7 +61,7 @@ Code rate &  Codes \\ \hline
 1/3 & Code 2, Code 6, Code 7 \\
 1/4 & Code 3, Code 8, Code 9 \\
 \end{tabular}
-\caption{Grouping of codes based on code rate}
+\caption{\textit{Grouping of codes based on code rate}\label{tab:codeRate}}
 \end{table}
 
 \begin{table}[h]
@@ -79,7 +73,6 @@ Constraint length &  Codes \\ \hline
 4 & Code 2, Code 4, Code 9 \\
 7 & Code 1, Code 6, Code 8 \\
 \end{tabular}
-\caption{Grouping of codes based on constraint length}
+\caption{\textit{Grouping of codes based on constraint length}\label{tab:constraintLength}}
 \end{table}
-
 All of these groups can be chosen for simulation in \verb@trellisGenerator.m@. The results obtained for the constant code rate of 1/2 and variable constraint length are presented in section \ref{sec:constantCodeRateSection}. Similarly, the results obtained by having a constant constraint length of 4 and variable code lengths are presented in section \ref{sec:constantContraintLengthSection}.
