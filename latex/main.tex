@@ -8,11 +8,12 @@
  right=25mm,
  bottom=25mm,
  }
-\usepackage{graphicx}
+\usepackage{graphicx}	
 \usepackage{bm}
 \usepackage{url}
-\usepackage{amsmath}
+\usepackage{amsmath}	
 \usepackage{tikz}
+\usetikzlibrary{automata,arrows,positioning,calc}
 \usepackage{todonotes}
 %\renewcommand{\baselinestretch}{1.25}
 
@@ -20,27 +21,41 @@
 \author{Rasmus Vestergaard, Stefan Bejan and Daniel Pytlos}
 \date{March 2017}
 
-\begin{document}
+\begin{document}		
 \maketitle
 
-\todo[inline] {Compare different codes with the same constraint length but different (same number of) generator polynomials in both burst-error and random-error correction.}
+\todo[inline] {Compare different codes with the same constraint length but different (same number of) generator polynomials in both burst-error and random-error correction	.}
 
 \todo[inline] {Compare different codes with the same constraint length and different code rate (more generator polynomials).}
-
-\todo[inline] {Method}
 
 \input{introduction}
 
 \section{Method}
-\input{method}
+\label{sec:methodSection}
 
+\input{method}
+\input{markovChannels}
 \section{Given codes}
+\label{sec:givenCodesSection}	
 \input{givenCodes}
+
+
 \section{Constant code rate}
+\label{sec:constantCodeRateSection}
 \input{decodingInBSC}
+
 \section{Constant constraint length}
+\label{sec:constantContraintLengthSection}
 \input{decodingInBurst}
+
 \todo[inline] {Create a markov burst-error channel?}
+
+\section{Conclusion}
+\label{sec:conclusionSection}
+
+
+
+\input{conclusion}
 
 
 
