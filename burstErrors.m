@@ -4,7 +4,7 @@ close all;
 simulationRuns = 1;
 
 messageLength = 10^6;
-BurstLevels = 50; %50 burst lenghts - 1 bit, 2 bits, 3 bits consecutive.
+BurstLevels = 50; %50 burst lenghts. ex: 1 bit, 2 bits, 3 consecutive bits.
 nBursts = 400; %How many bursts of that lenghts we are in the message.
 burstSep = 5000; %separation between bursts.
 

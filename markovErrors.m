@@ -40,8 +40,8 @@ for k=1:simulationRuns
         end
     end
 end
-BER = BER ./ simulationRuns; %Get the average error rate if we have more simulations runs.
-CER = mean(CER) ./ simulationRuns; %Get the average error rate if we have more simulations runs.
+BER = BER ./ simulationRuns; %Get the average bit error rate if there are more simulations runs.
+CER = mean(CER) ./ simulationRuns; %Get the average channel error rate if there are more simulations runs.
 %% Create Figure
 % Fig0 = figure;
 % plot(errors)
