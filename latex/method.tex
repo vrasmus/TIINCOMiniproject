@@ -9,7 +9,7 @@ g_{1,2}(x) = 1 + x^2 + x^3 + x^5 + x^6&g_{2,2}(x)=1 + x + x^3&g_{3,2} = 1+x+x^2\
 &&g_{3,4}(x) = 1+x+x^2
 \end{matrix}
 \end{align*}
-The investigation is concerned with how the convolutional codes performs when random and burst errors are introduced in the channels. For this purpose, MATLAB scripts that would allow simulating transmission of a message over the given types of channels are created.
+The investigation is concerned with how the convolutional codes perform when random and burst errors are introduced in the channels. For this purpose, MATLAB scripts that would allow simulating transmission of a message over the given types of channels are created.
 In each script, it is possible to adjust the input message length and the number of times the simulation should run. Increasing the number of simulation iterations will generate smoother lines of the figures, by averaging the results of multiple realizations. This reduces effects of the stochastic nature of the simulation. For the simulations presented in the paper, the result is from $25$ runs. 
 An additional file, (\verb@trellisGenerator.m@), defines the convolutional code generator polynomials used. The code polynomials used for coding and decoding may be easily specified by modifying this file.
 The following sections present the methods used for simulation.

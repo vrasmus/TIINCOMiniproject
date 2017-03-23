@@ -10,13 +10,13 @@ p21 = 0.15;
 eps1 = 0.0;
 eps2 = 0.0;
 
-simulationRuns = 25; %How many different messages are sent in the simulation.
+simulationRuns = 1; %How many different messages are sent in the simulation.
 %% Simulation
 rng(0); % seed.
 trellisGenerator
 p12 = (0:burstProbabilityLevels)/burstProbabilityLevels*burstProbabilityMax; % Splitting the error rates levels.
 BER = zeros(length(trellisList),burstProbabilityLevels+1,1); %Bit error rate - 0 in the beggining
-CER = zeros(length(trellisList),burstProbabilityLevels+1,1); %Channel error rate - 0 in the beggining
+CER = zeros(length(trellisList),burstProbabilityLevels+1,1); %Channel error rate - 0 in the beggining, calculated later
 
 for k=1:simulationRuns
     disp(sprintf('----- Simulation %i of %i -----', k,simulationRuns))
@@ -75,6 +75,5 @@ set(a,'TickLabelInterpreter', 'tex');
 set(leg,'Interpreter','latex','FontSize',11)
 
 print('markovErrors','-dpdf')
-
-system ('/usr/bin/pdfcrop markovErrors.pdf'); 
-system('rm markovErrors.pdf');
+% system ('/usr/bin/pdfcrop markovErrors.pdf'); 
+% system('rm markovErrors.pdf');
